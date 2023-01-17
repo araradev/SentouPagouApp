@@ -1,0 +1,7 @@
+{
+  "name": "sentouPagouApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

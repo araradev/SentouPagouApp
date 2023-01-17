@@ -1,0 +1,48 @@
+.container--lista{
+  display: flex;
+  justify-content: space-between;
+}
+
+.lista--itemDescricao{
+  text-align: start;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  min-width: 60%;
+}
+.lista--itemValor{
+  text-align: end;
+  padding: 0;
+  margin: 0;
+  min-width: 30%;
+}
+
+.lista--itemAcao{
+  text-align: end;
+  padding: 0;
+  margin: 0;
+  min-width: 5%;
+}
+
+.titulo--valorLista{
+  text-align: end;
+  padding-right: 2.5rem;
+  font-size: 16px;
+}
+
+.titulo--produtoLista{
+  font-size: 16px;
+  min-width: 70%;
+}
+
+.lista--itemPorPessoa{
+  min-width: 70%;
+}
+
+.lista--itemValorPorPessoa{
+  text-align: end;
+}
+
+.lista--Consumo{
+  border-bottom: 1px solid green;
+}
