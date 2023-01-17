@@ -7,104 +7,127 @@
 <ion-content [fullscreen]="true">
   <ion-item>
     <ion-label position="stacked">Produto</ion-label>
-    <ion-input placeholder="Informe o produto"></ion-input>
+    <ion-input
+      name="descricao_produto"
+      id="descricao_produto"
+      [(ngModel)]="descricao_produto"
+      required
+      placeholder="Informe o produto"
+    >
+    </ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Quantidade</ion-label>
-    <ion-input placeholder="Informe a quantidade do produto"></ion-input>
+    <ion-input
+      name="qtd_produto"
+      id="qtd_produto"
+      [(ngModel)]="qtd_produto"
+      required
+      placeholder="Informe a quantidade do produto"
+    ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Valor</ion-label>
-    <ion-input placeholder="Informe o valor"></ion-input>
+    <ion-input
+      name="vlr_produto"
+      id="vlr_produto"
+      [(ngModel)]="vlr_produto"
+      required
+      placeholder="Informe o valor"
+    >
+    </ion-input>
   </ion-item>
-  <ion-button expand="full">Adicionar</ion-button>
+  <ion-button expand="full" (click)="adicionarConsumo()">Adicionar</ion-button>
   <ion-list lines="none" class="lista--Consumo">
     <ion-list-header>
       <ion-label class="titulo--produtoLista">Produto</ion-label>
       <ion-label class="titulo--valorLista">Valor</ion-label>
       <ion-label class="titulo--valorLista"></ion-label>
     </ion-list-header>
-    <ion-item class="container--lista">
-      <!-- <ion-item class="" *ngFor="let produto of produtos"> -->
-      <ion-label class="lista--itemDescricao"> Dose de pitu x10 </ion-label>
-      <ion-label class="lista--itemValor"> 30,00 </ion-label>
-      <ion-label color="danger" class="lista--itemAcao"
-        ><ion-icon name="close-sharp"></ion-icon
-      ></ion-label>
-      <!-- <ion-label class="">
-        <div class="">
-          <span class=""
-            >{{ produto.descricao_produto }} x{{ produto.qtd_produto }}</span
-          >
-        </div>
-        <div class="">
-          <span class=""
-            >{{ produto.vlr_produto | number:'1.2-5':'pt' }}</span
-          >
-        </div>
-      </ion-label> -->
-    </ion-item>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemDescricao"> Chopp Grande x10 </ion-label>
-      <ion-label class="lista--itemValor"> 170,00 </ion-label>
-      <ion-label color="danger" class="lista--itemAcao"
-        ><ion-icon name="close-sharp"></ion-icon
-      ></ion-label>
-    </ion-item>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemDescricao">
-        Espetinho Simples x10
+    <ion-item class="container--lista" *ngFor="let produto of produtosImprimir">
+      <ion-label class="lista--itemDescricao"
+        >{{ produto.descricao_produto }} x{{ produto.qtd_produto }}</ion-label
+      >
+      <ion-label class="lista--itemValor">
+        {{ produto.vlr_produto | number:'1.2-5':'pt' }}
       </ion-label>
-      <ion-label class="lista--itemValor"> 90,00 </ion-label>
       <ion-label color="danger" class="lista--itemAcao"
-        ><ion-icon name="close-sharp"></ion-icon
-      ></ion-label>
-    </ion-item>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemDescricao"> Castanha do Pará x1 </ion-label>
-      <ion-label class="lista--itemValor"> 10,00 </ion-label>
-      <ion-label color="danger" class="lista--itemAcao"
-        ><ion-icon name="close-sharp"></ion-icon
-      ></ion-label>
+        ><ion-icon name="close-sharp"></ion-icon>
+      </ion-label>
     </ion-item>
   </ion-list>
   <ion-list lines="none" class="">
     <ion-item class="container--lista">
       <ion-label class="lista--item"> Total sem Taxa: </ion-label>
-      <ion-label class="lista--itemValor"> R$ 300,00 </ion-label>
+      <ion-label class="lista--itemValor">
+        R$ {{ totalSemTaxa | number:'1.2-5':'pt' }}
+      </ion-label>
     </ion-item>
     <ion-item class="container--lista">
       <ion-label class="lista--item"> Taxa de Serviço: </ion-label>
-      <ion-label class="lista--itemValor"> R$ 30,00 </ion-label>
+      <ion-label class="lista--itemValor">
+        R$ {{ taxaServico | number:'1.2-5':'pt' }}
+      </ion-label>
     </ion-item>
     <ion-item class="container--lista">
       <ion-label class="lista--item"> Valor Final: </ion-label>
-      <ion-label class="lista--itemValor"> R$ 330,00 </ion-label>
+      <ion-label class="lista--itemValor">
+        R$ {{ totalComTaxa | number:'1.2-5':'pt' }}
+      </ion-label>
     </ion-item>
   </ion-list>
-  <ion-list lines="none" class="lista--Consumo">
-    <ion-item>
-      <ion-label position="stacked">Quantas pessoas no rolê?</ion-label>
-      <ion-input placeholder="Informe quantas pessoas"></ion-input>
-    </ion-item>
-    <ion-button expand="full">Calcular Por Pessoa</ion-button>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemPorPessoa">
-        Total sem Taxa Por Pessoa:
-      </ion-label>
-      <ion-label class="lista--itemValorPorPessoa"> R$ 50,00 </ion-label>
-    </ion-item>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemPorPessoa">
-        Taxa de Serviço Por Pessoa:
-      </ion-label>
-      <ion-label class="lista--itemValorPorPessoa"> R$ 5,00 </ion-label>
-    </ion-item>
-    <ion-item class="container--lista">
-      <ion-label class="lista--itemPorPessoa">
-        Valor Final Por Pessoa:
-      </ion-label>
-      <ion-label class="lista--itemValorPorPessoa"> R$ 55,00 </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-card color="light">
+    <ion-card-content class="card--porPessoa">
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item color="danger" slot="header" color="light">
+            <ion-label>Calculo por pessoa</ion-label>
+          </ion-item>
+          <div slot="content">
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label position="stacked"
+                  >Quantas pessoas no rolê?</ion-label
+                >
+                <ion-input
+                  name="qtd_pessoas"
+                  id="qtd_pessoas"
+                  [(ngModel)]="qtd_pessoas"
+                  placeholder="Informe quantas pessoas"
+                >
+                </ion-input>
+              </ion-item>
+              <ion-button (click)="calcularTotaisPorPessoa()" expand="full"
+                >Calcular Por Pessoa</ion-button
+              >
+              <ion-item class="container--listaPorPessoa">
+                <ion-label class="lista--itemPorPessoa">
+                  Total sem Taxa Por Pessoa:
+                </ion-label>
+                <ion-label class="lista--itemValorPorPessoa">
+                  R$ {{ totalSemTaxaPorPessoa | number:'1.2-5':'pt' }}
+                </ion-label>
+              </ion-item>
+              <ion-item class="container--listaPorPessoa">
+                <ion-label class="lista--itemPorPessoa">
+                  Taxa de Serviço Por Pessoa:
+                </ion-label>
+                <ion-label class="lista--itemValorPorPessoa">
+                  R$ {{ taxaServicoPorPessoa | number:'1.2-5':'pt' }}
+                </ion-label>
+              </ion-item>
+              <ion-item class="container--listaPorPessoa">
+                <ion-label class="lista--itemPorPessoa">
+                  Valor Final Por Pessoa:
+                </ion-label>
+                <ion-label class="lista--itemValorPorPessoa">
+                  R$ {{ totalComTaxaPorPessoa | number:'1.2-5':'pt' }}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
